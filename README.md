@@ -1,5 +1,5 @@
 # goto-github.nvim
--------
+
 ## Description
 
 Quickly open lazy.nvim plugin links using the name.
