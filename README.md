@@ -6,15 +6,19 @@ Quickly open lazy.nvim plugin links using the name.
 
 ## Usage
 
-Hover over a line with the lazy.nvim plugin name. Eg: `'anugrahn1/goto-github.nvim'` and press `<leader>go` to open the Github repo in your browser.
+Hover over a line with the lazy.nvim plugin name. Eg: `'anugrahn1/goto-github.nvim'` and enter `:OpenGithubLink<CR>` to open the Github repo in your browser.
 
 ## Installation
 
 ```lua
 {
     'anugrahn1/goto-github.nvim',
+    event = 'VeryLazy',
     opts = {},
-}
+    keys = {
+        { '<leader>go', '<CMD>OpenGithubLink<CR>', desc = 'GoToGithub' },
+    },
+},
 ```
 
 ## ToDo

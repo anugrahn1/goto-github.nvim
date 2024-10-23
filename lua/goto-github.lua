@@ -32,9 +32,7 @@ M.open_link = function()
 end
 
 M.setup = function()
-  vim.keymap.set("n", "<leader>go", function()
-    M.open_link()
-  end)
+  vim.api.nvim_create_user_command("OpenGithubLink", M.open_link, {})
 end
 
 return M
