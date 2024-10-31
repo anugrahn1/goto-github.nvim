@@ -24,4 +24,4 @@ Hover over a line with the lazy.nvim plugin name. Eg: `'anugrahn1/goto-github.nv
 ## ToDo
 
 - Test on Windows and MacOS
-- Add option to make custom keymaps
+- Add option to enable a popup confirming whether or not a new file should be created if it doesn't already exist
