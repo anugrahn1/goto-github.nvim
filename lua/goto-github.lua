@@ -1,21 +1,21 @@
 local M = {}
 
 M.get_cursor_under_text = function()
-  return vim.fn.expand("<cfile>")
+  return vim.fn.expand '<cfile>'
 end
 
 M.get_owner = function(str)
-  local result = str:match("([^/]+)")
+  local result = str:match '([^/]+)'
   return result
 end
 
 M.get_repo = function(str)
-  local result = str:match("/(.+)")
+  local result = str:match '/(.+)'
   return result
 end
 
 M.build_link = function(owner, repo)
-  local link = "https://www.github.com/" .. owner .. "/" .. repo
+  local link = 'https://www.github.com/' .. owner .. '/' .. repo
   return link
 end
 
@@ -25,14 +25,18 @@ M.open_link = function()
   local repo = M.get_repo(text)
   local link = M.build_link(owner, repo)
 
-  vim.fn.jobstart({ "xdg-open", link })
-  -- TODO: Test these on respective Operating Systems
-  -- vim.fn.jobstart({"open", link})   -- For macOS
+  if vim.loop.os_uname().sysname == 'Darwin' then
+    vim.fn.jobstart { 'open', link } -- For macOS
+  else
+    vim.fn.jobstart { 'xdg-open', link } -- Assuming if not macOS, then user is on Linux (WRONG ASSUMPTION !!)
+  end
+
+  -- TODO: Test this on windows
   -- vim.fn.jobstart({"start", link})  -- For Windows
 end
 
 M.setup = function()
-  vim.api.nvim_create_user_command("OpenGithubLink", M.open_link, {})
+  vim.api.nvim_create_user_command('OpenGithubLink', M.open_link, {})
 end
 
 return M
